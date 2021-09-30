@@ -7,7 +7,7 @@ public class SimpleNumber {
 	public int returnSimpleNumber() {
 		
 		int n = 0;
-		int max = 20, min = 4;
+		int max = 13, min = 4;
 		ArrayList <Boolean> listBool = new ArrayList <>();
 		ArrayList <Integer> listInt = new ArrayList<>();
 		

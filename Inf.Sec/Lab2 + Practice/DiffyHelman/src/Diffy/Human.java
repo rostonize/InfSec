@@ -18,7 +18,7 @@ public class Human {
 	}
 	
 	public double return_remains() {
-		//System.out.println( Math.pow(q, degree)%p);
+		System.out.println( Math.pow(q, degree)%p);
 		return remains = (Math.pow(q, degree)) % p;
 		
 	}
