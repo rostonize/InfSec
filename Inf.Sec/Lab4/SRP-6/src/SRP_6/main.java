@@ -1,6 +1,7 @@
 package SRP_6;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 
 public class main {
 
@@ -14,10 +15,10 @@ public class main {
 		String login = "login";
 		String password = "password";
 		
-		long q = number.returnSimpleNumber();
-		long N = 2*q + 1;
-		int g = 2;
-		
+		int q = number.returnSimpleNumber();
+		int N = 2*q + 1;
+		int g = generator(N);
+
 		text.append(password);
 		hash.get_text(text.toString());
 		hash.CreateHash(); // x
@@ -101,6 +102,48 @@ public class main {
 		int max = 10000, min = 20;
 		
 		return n = (int) (Math.random()*(( max-min ) + 1)) + min;
+		
+	}
+	
+	public static int powmod(int a, int b, int p) {
+		
+		int res = 1;
+		while (b > 0) {
+			
+			if ((b & 1) == 1) { res = (res * a % p); b--; }
+			else { a = a * a % p; b >>= 1; }
+			
+		}
+		
+		return res;
+		
+	}
+	
+	public static int generator (int p) {
+		
+		ArrayList <Integer> fact = new ArrayList<>();
+		
+		int phi = p - 1, n = phi;
+		for (int i = 2; i * i <= n; i ++) {
+			
+			if (n % i == 0) {
+				
+				fact.add(i);
+				while (n % i == 0 ) n /= i;
+				
+			}
+		}
+		
+		if (n > 1) fact.add(n);
+		for (int res = 2; res <= p; p ++) {
+			
+			boolean ok = true;
+			for (int i = 0; i < fact.size(); i ++) ok &= powmod(res, phi/fact.get(i), p) != 1;
+			if (ok) return res;
+			
+		}
+		
+		return -1;
 		
 	}
 
